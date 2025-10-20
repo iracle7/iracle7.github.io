@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ko" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>AidenCraft · 리뉴얼 중입니다</title>
+  <meta name="description" content="AidenCraft 개발자 운영 웹 서비스 — 감성적인 리뉴얼 진행 중. 곧 새롭게 만나요." />
+  <meta name="theme-color" content="#0f1216"/>
+
+  <!-- Social / SEO -->
+  <meta property="og:title" content="AidenCraft · Coming Soon" />
+  <meta property="og:description" content="개발자 운영 웹 서비스 리뉴얼 중 · 곧 오픈합니다" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://dummyimage.com/1200x630/111827/ffffff&text=AidenCraft" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-0:#0b0e13; /* deep */
+      --bg-1:#0f141b; /* card */
+      --fg:#e9eef7;   /* text */
+      --muted:#a5b1c9; /* secondary */
+      --accent:#ff6600; /* AidenCraft orange */
+      --accent-2:#23a6d5; /* teal-blue */
+      --radius:22px;
+    }
+
+    /* CSS reset (lightweight) */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,Pretendard,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,Arial,sans-serif;background:var(--bg-0);color:var(--fg);-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
+
+    /* Fluid type */
+    h1{font-weight:800;letter-spacing:-0.02em;line-height:1.02;font-size:clamp(34px, 5vw, 72px);}
+    h2{font-weight:600;letter-spacing:-0.01em;line-height:1.15;font-size:clamp(18px, 2.6vw, 26px);color:var(--muted)}
+    p{font-size:clamp(14px, 1.6vw, 18px);color:var(--muted);line-height:1.7}
+    a{color:inherit}
+
+    /* Layout */
+    .wrap{min-height:100%;display:grid;grid-template-rows:auto 1fr auto;}
+    header,footer{position:relative;z-index:2}
+    header{padding:18px 20px}
+    footer{padding:24px 20px;color:var(--muted);}
+
+    /* Brand */
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:28px;height:28px;border-radius:8px;background:conic-gradient(from 180deg at 50% 50%, rgba(255,102,0,0.9), rgba(35,166,213,0.9), rgba(255,102,0,0.9)); box-shadow:0 0 24px rgba(255,102,0,.35) inset, 0 2px 10px rgba(0,0,0,.3)}
+    .brand b{font-weight:700}
+
+    /* Hero */
+    .hero{position:relative;display:grid;place-items:center;padding:min(8vh,72px) 20px}
+    .card{position:relative;max-width:980px;width:100%;border-radius:var(--radius);padding:clamp(22px, 5vw, 48px);backdrop-filter:saturate(150%) blur(10px);background:linear-gradient(180deg,rgba(17,24,39,0.65),rgba(10,14,19,0.6));border:1px solid rgba(255,255,255,0.08);box-shadow:0 10px 60px rgba(0,0,0,.45)}
+    .badge{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 12px;border:1px solid rgba(255,255,255,0.12);color:#dbe7ff;background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));}
+    .pulse{display:inline-block;width:8px;height:8px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 0 rgba(255,102,0,.6);animation:pulse 2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,102,0,.6)}70%{box-shadow:0 0 0 14px rgba(255,102,0,0)}100%{box-shadow:0 0 0 0 rgba(255,102,0,0)}}
+
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .btn{display:inline-flex;align-items:center;gap:10px;border-radius:12px;padding:14px 18px;font-weight:600;border:1px solid rgba(255,255,255,0.12);text-decoration:none;transition:transform .2s ease, background .2s ease, border-color .2s ease}
+    .btn.primary{background:linear-gradient(180deg, rgba(255,102,0,.95), rgba(255,102,0,.8)); color:#0d0f13;border-color:transparent}
+    .btn.primary:hover{transform:translateY(-1px)}
+    .btn.ghost{background:rgba(255,255,255,.04)}
+    .btn.ghost:hover{background:rgba(255,255,255,.08)}
+
+    /* Background visual */
+    .backdrop{position:fixed;inset:0;z-index:0;overflow:hidden}
+    .grad{position:absolute;inset:auto -20% -20% -20%;height:120vh;background:radial-gradient(60% 60% at 20% 20%, rgba(255,102,0,.25), transparent 55%), radial-gradient(70% 70% at 80% 10%, rgba(35,166,213,.22), transparent 55%), radial-gradient(50% 50% at 60% 80%, rgba(255,255,255,.06), transparent 60%); filter:blur(40px);animation:float 20s ease-in-out infinite alternate}
+    @keyframes float{to{transform:translate3d(0,-20px,0) scale(1.02)}}
+
+    /* Noise overlay for texture */
+    .noise{position:absolute;inset:0;opacity:.055;pointer-events:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><filter id="n"><feTurbulence baseFrequency="0.8" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.35"/></svg>'); mix-blend-mode:overlay}
+
+    /* Decorative orbs */
+    .orb{position:absolute; border-radius:999px; filter:blur(10px); opacity:.55; animation: drift 28s ease-in-out infinite alternate}
+    .orb.o1{width:340px;height:340px; left:-80px; top:-60px; background:radial-gradient(circle at 30% 30%, rgba(255,102,0,.8), transparent 60%)}
+    .orb.o2{width:280px;height:280px; right:-60px; bottom:-80px; background:radial-gradient(circle at 70% 70%, rgba(35,166,213,.75), transparent 65%); animation-duration: 32s}
+    @keyframes drift{to{transform:translate3d(10px, -18px, 0)}}
+
+    /* Responsive tweaks */
+    .grid{display:grid; gap:22px; margin-top:22px}
+    .grid-2{grid-template-columns:1fr 1fr}
+    @media (max-width: 780px){.grid-2{grid-template-columns:1fr}}
+
+    /* Footer links */
+    .links{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+    .links a{opacity:.9; text-decoration:none}
+    .links a:hover{opacity:1; text-decoration:underline}
+
+    /* Prefers-color-scheme (optional light palette) */
+    @media (prefers-color-scheme: light){
+      :root{--bg-0:#fafafa;--bg-1:#ffffff;--fg:#0e1116;--muted:#374151}
+      body{background:radial-gradient(1000px 600px at 10% -50%, rgba(255,102,0,.12), transparent 60%), radial-gradient(700px 500px at 90% 10%, rgba(35,166,213,.12), transparent 60%), #f5f7fb}
+      .card{background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.7));border-color:rgba(0,0,0,.06)}
+      .badge{border-color:rgba(0,0,0,.08)}
+      .btn.ghost{background:rgba(0,0,0,.04)}
+      .noise{opacity:.035}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="backdrop" aria-hidden="true">
+      <div class="grad"></div>
+      <div class="noise"></div>
+      <div class="orb o1"></div>
+      <div class="orb o2"></div>
+    </div>
+
+    <header>
+      <div class="brand" aria-label="AidenCraft">
+        <div class="logo" role="img" aria-label="AidenCraft"></div>
+        <b>AidenCraft</b>
+      </div>
+    </header>
+
+    <main class="hero">
+      <section class="card" role="region" aria-label="Coming Soon">
+        <span class="badge"><span class="pulse" aria-hidden="true"></span> 리뉴얼 진행 중 · Coming Soon</span>
+        <h1 style="margin:14px 0 10px">새로운 감성으로 곧 돌아옵니다</h1>
+        <h2>· AidenCraft ·</h2>
+
+        <div class="grid">
+          <p>
+            지금은 더 좋은 경험을 위해 공간을 단장하고 있어요. 
+            AidenCraft의 새 홈페이지를 곧 만나보세요.
+          </p>
+          <div class="grid grid-2">
+            <div>
+              <p><strong>업데이트 소식</strong><br/>출시 알림, 개발 노트, 앱 소식은 오픈과 함께 순차 공개됩니다.</p>
+            </div>
+            <div>
+              <p><strong>오픈 예정</strong><br/>리뉴얼 마감 후 즉시 공개됩니다. 조금만 기대해 주세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="#" onclick="event.preventDefault(); alert('곧 오픈합니다!');" aria-label="오픈 알림">
+            🚧 곧 오픈합니다
+          </a>
+          <a class="btn ghost" href="mailto:aiden.dev@gmail.com">aiden.dev@gmail.com</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="links">
+        <span>© <span id="y"></span> AidenCraft</span>
+        <span aria-hidden="true">•</span>
+        <a href="#" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">맨 위로</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // small JS niceties only
+    document.getElementById('y').textContent = new Date().getFullYear();
+    document.documentElement.classList.remove('no-js');
+  </script>
+</body>
+</html>
