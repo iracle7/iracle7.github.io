@@ -1,0 +1,9 @@
+[
+  {
+    "appId": "CarBook",
+    "imageUrl": "https://iracle7.github.io/app-assets-api/images/shared/banners/carbook.png",
+    "androidUrl": "https://play.google.com/store/apps/details?id=carbook",
+    "iosUrl": "",
+    "active": true
+  }
+]
